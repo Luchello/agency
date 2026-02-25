@@ -1,0 +1,11 @@
+한식당 '미담' 랜딩페이지. App.jsx 하나에 전부 구현.
+index.html: title '미담 | 을지로 한정식·코스요리', meta desc, OG태그, Pretendard 폰트(<link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css'>), body font-family:Pretendard,sans-serif, html scroll-behavior:smooth
+컬러: 배경 #FFFBF0(연황), 텍스트 #3E2723, 액센트 #BF360C(진갈), 카드 white
+섹션:
+1. Navbar: 고정, 🍽️ 미담, 링크(메뉴|공간|오시는길)
+2. Hero: min-h-screen, 따뜻한그라디언트(amber-50→orange-100), '한 끼에 담긴 정성', 서브:'을지로 | 계절 한정식', CTA '예약하기' → tel:02-2267-8800
+3. Menu(id=menu): 3열: 🥗점심한상 25,000원 '제철나물+구이+찌개'/🍱코스A 45,000원 '전채~디저트 7코스'/🎋코스B 65,000원 '프리미엄 한우코스'
+4. Space(id=space): 배경amber-50, '공간' 3열: 🏮홀 최대30석/🚪룸A 4-8인/🚪룸B 8-12인
+5. Info(id=info): 📍서울중구을지로3가 338-5 2F, 🕐점심11:30-14:30/저녁17:30-21:30/일휴무, 📞02-2267-8800(tel:), 🅿️인근공영주차장
+6. Footer: 다크#3E2723, 인스타@midam_euljiro, ©2024
+빌드: npm run build 성공 확인

@@ -1,0 +1,11 @@
+네일샵 '루나네일' 랜딩페이지. App.jsx 하나에 전부 구현.
+index.html: title '루나네일 | 홍대 젤네일·아트네일', meta desc, OG태그, Pretendard 폰트(<link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css'>), body font-family:Pretendard,sans-serif, html scroll-behavior:smooth
+컬러: 배경 #FFF8F3(피치), 텍스트 #3D2C2E, 액센트 #FF6B6B(코랄), 카드 white
+섹션:
+1. Navbar: 고정, 💅 루나네일, 링크(메뉴|작품|오시는길)
+2. Hero: min-h-screen, 코랄그라디언트(rose-50→orange-50), '손끝에서 시작되는 설렘', CTA '예약하기' → tel:02-332-9090
+3. Menu(id=menu): 탭전환(useState) 💅젤네일/🎨아트네일: 젤 원컬러45,000/프렌치55,000/글리터60,000/그라데이션55,000 | 아트 심플아트65,000/캐릭터아트80,000/핸드페인팅90,000/시즌아트70,000. 카드 rounded-xl shadow-sm
+4. Gallery(id=gallery): '작품 갤러리' 그리드, 이모지 카드 6개 (💅🌸✨🎀💎🦋) 각각 스타일명
+5. Info(id=info): 📍서울마포구와우산로 112(홍대입구역6번출구), 🕐매일11-21/월휴무, 📞02-332-9090(tel:)
+6. Footer: 다크#3D2C2E, 인스타@luna_nail_hd, ©2024
+빌드: npm run build 성공 확인

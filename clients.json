@@ -1,0 +1,14 @@
+[
+  {
+    "id": "2026-0001",
+    "name": "블룸 베이커리",
+    "contact": "010-9999-8888",
+    "service": "standard",
+    "budget": "700000",
+    "status": "QA",
+    "createdAt": "2026-02-15",
+    "deployUrl": "https://template-v2-kappa.vercel.app",
+    "projectDir": "",
+    "notes": "모의테스트 — 수제빵카페, 성수동, 따뜻한 톤, 메뉴+위치+예약"
+  }
+]

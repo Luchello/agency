@@ -1,0 +1,11 @@
+헬스장 '아이언짐' 랜딩페이지. App.jsx 하나에 전부 구현.
+index.html: title '아이언짐 | 잠실 PT·헬스·크로스핏', meta desc, OG태그, Pretendard 폰트(<link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css'>), body font-family:Pretendard,sans-serif, html scroll-behavior:smooth
+컬러: 배경 #111111(다크), 텍스트 #F5F5F5(흰), 액센트 #FF4444(레드), 카드 #1E1E1E(다크카드)
+섹션:
+1. Navbar: 고정 bg-black/90, 🏋️ 아이언짐, 링크(프로그램|트레이너|오시는길), 흰텍스트
+2. Hero: min-h-screen, 검정배경, 빨간액센트, '한계를 넘어서', 서브:'잠실|PT·헬스·크로스핏', CTA '무료체험' → tel:02-422-7777, 빨간버튼
+3. Programs(id=programs): 4열(모바일2열), 다크카드: 🏋️PT 1회80,000/월회원권 10만/💪크로스핏 월15만/🥊복싱 월12만. 카드 rounded-xl, border border-gray-800
+4. Trainers(id=trainers): 3열: 💪 박철수 대표트레이너 체대졸 15년 '결과로 증명합니다'/👊 김동현 크로스핏코치 CF-L2 8년 '한계는 없다'/🥊 이수진 복싱트레이너 전국체전 5년 '함께 땀 흘려요'
+5. Info(id=info): 📍서울송파구올림픽로 300 B1, 🕐매일06-24/연중무휴, 📞02-422-7777(tel:), 🅿️건물주차가능
+6. Footer: bg-black, 인스타@iron_gym_js, ©2024
+빌드: npm run build 성공 확인

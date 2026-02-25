@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+@theme {
+  --color-mint: #10B981;
+  --color-mint-dark: #059669;
+  --color-ivory: #FFFBEB;
+  --color-coral: #F87171;
+  --color-warm-gray: #F5F5F0;
+  --font-sans: 'Pretendard', system-ui, -apple-system, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: var(--font-sans);
+    color: #1a1a1a;
+    background: var(--color-ivory);
+  }
+}
+
+@layer components {
+  .section-padding {
+    @apply px-5 py-20 md:px-8 lg:px-16 lg:py-28;
+  }
+  .card-hover {
+    @apply transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl;
+  }
+}
+
+/* Fade-in animation */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}

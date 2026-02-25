@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+:root {
+  --bb-primary: #C4733B;
+  --bb-accent: #8B5E3C;
+  --bb-bg: #FDF8F3;
+  --bb-text: #3D2B1F;
+}
+
+html, body {
+  height: 100%;
+}
+
+html {
+  font-size: 16px; /* iOS zoom prevention */
+}
+
+body {
+  margin: 0;
+  background: var(--bb-bg);
+  color: var(--bb-text);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  overflow-x: hidden; /* prevent horizontal scroll */
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--bb-primary), white 35%);
+  color: var(--bb-text);
+}
+
+/* Subtle film grain */
+.bb-grain {
+  position: relative;
+}
+.bb-grain::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 10%, rgba(61, 43, 31, 0.06), transparent 45%),
+    radial-gradient(circle at 80% 70%, rgba(196, 115, 59, 0.05), transparent 50%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.25'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply;
+  opacity: 0.35;
+}
+
+/* Marquee */
+@keyframes bb-marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.bb-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: bb-marquee 18s linear infinite;
+}
+
+.bb-marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* Scroll reveal */
+.bb-reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 700ms cubic-bezier(.2,.8,.2,1), transform 700ms cubic-bezier(.2,.8,.2,1);
+}
+
+.bb-reveal.is-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Serif helper */
+.font-serifDisplay {
+  font-family: Fraunces, ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+/* Fancy underline */
+.bb-underline {
+  background-image: linear-gradient(transparent 60%, color-mix(in oklab, var(--bb-primary), transparent 65%) 60%);
+  background-size: 100% 1.2em;
+  background-repeat: no-repeat;
+}

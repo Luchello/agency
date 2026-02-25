@@ -1,0 +1,11 @@
+영어학원 '스피크잉글리시' 랜딩페이지. App.jsx 하나에 전부 구현.
+index.html: title '스피크잉글리시 | 강남 성인영어회화', meta desc, OG태그, Pretendard 폰트(<link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css'>), body font-family:Pretendard,sans-serif, html scroll-behavior:smooth
+컬러: 배경 #F0FFF4(연초록), 텍스트 #1A3C34, 액센트 #38A169(그린), 카드 white
+섹션:
+1. Navbar: 고정, 🗣️ 스피크잉글리시, 링크(수업|강사|오시는길)
+2. Hero: min-h-screen, 그린그라디언트, 'English Starts Here', 서브:'원어민 1:1 | 소수정예 회화반', CTA '무료체험' → tel:02-555-0808
+3. Courses(id=courses): 4열(모바일2열): 🗣️1:1회화 월400,000/👥그룹회화(4인) 월250,000/💼비즈니스영어 월450,000/📝토익스피킹 월300,000
+4. Teachers(id=teachers): 배경green-50, 3열: 👨 James Park 미국출신 원어민 10년/'Fun & Natural'/👩 Sarah Kim 캐나다 7년/'비즈니스영어전문'/👩 이지은 한국인강사 TESOL 5년/'문법기초탄탄'
+5. Info(id=info): 📍서울강남구테헤란로 152 6F, 🕐평일07-22/토09-17/일휴무, 📞02-555-0808(tel:)
+6. Footer: 다크#1A3C34, 인스타@speak_english_gn, ©2024
+빌드: npm run build 성공 확인

@@ -1,0 +1,15 @@
+필라테스 스튜디오 '밸런스필라테스' 랜딩페이지. App.jsx 하나에 전부 구현.
+
+index.html: title '밸런스 필라테스 | 송파구 프리미엄 필라테스', meta desc, OG태그, Pretendard 폰트(<link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css'>), body font-family:Pretendard,sans-serif, html scroll-behavior:smooth
+
+컬러: 배경 #FAF5FF(연보라), 텍스트 #2D2235, 액센트 #9B59B6(퍼플), 카드 white
+
+섹션:
+1. Navbar: 고정, 🧘 밸런스 필라테스, 링크(프로그램|강사|오시는길)
+2. Hero: min-h-screen, 보라 그라디언트, '나를 위한 시간, 밸런스를 찾다', CTA '체험수업 신청' → tel:02-412-8890
+3. Programs(id=programs): 제목 'Programs', 4열(모바일2열) 카드: 🧘‍♀️기구필라테스 1:1 80,000원/매트그룹 4인 35,000원/🤰산전산후 1:1 90,000원/💪재활필라테스 1:1 90,000원. 카드 rounded-xl shadow-sm hover:shadow-md
+4. Instructors(id=instructors): 배경 purple-50, 3열: 👩 정유진 원장 10년/BASI인증/'몸과 마음의 균형' | 👩 김소연 5년/체형교정전문/'바른 자세가 시작' | 👩 박민지 3년/산전산후전문/'엄마들의 든든한 파트너'
+5. Info(id=info): 📍서울 송파구 올림픽로 135, 🕐평일07-22/토09-18/일휴무, 📞02-412-8890(tel:링크), 🅿️건물B1주차
+6. Footer: 다크#2D2235, 인스타@balance_pilates, ©2024, 맨위로버튼
+
+빌드: npm run build 성공 확인

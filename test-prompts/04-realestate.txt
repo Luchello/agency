@@ -1,0 +1,11 @@
+공인중개사 '한강부동산' 랜딩페이지. App.jsx 하나에 전부 구현.
+index.html: title '한강부동산 | 용산 아파트·오피스텔 전문', meta desc, OG태그, Pretendard 폰트(<link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css'>), body font-family:Pretendard,sans-serif, html scroll-behavior:smooth
+컬러: 배경 #F8F9FA, 텍스트 #212529, 액센트 #0D6EFD(블루), 카드 white
+섹션:
+1. Navbar: 고정, 🏠 한강부동산, 링크(매물|서비스|오시는길)
+2. Hero: min-h-screen, 다크그라디언트(gray-800→gray-900), 흰텍스트 '한강뷰의 시작, 한강부동산', 서브:'용산구 이촌동 전문|20년 경력', CTA '매물 문의' → tel:02-793-5500
+3. Services(id=services): 3열: 🏢매매 아파트·오피스텔·빌라/📋전월세 합리적인 조건 매칭/📊시세분석 실거래가 기반 분석
+4. Listings(id=listings): '추천 매물' 3열카드: 🏙이촌래미안 32평 매매12억/🏙한강대우 25평 전세6.5억/🏙용산더프라임 20평 월세500/80. 카드 rounded-xl shadow-md
+5. Info(id=info): 📍서울용산구이촌로 72, 🕐평일09-18/토09-13, 📞02-793-5500(tel:), 등록번호:11170-2023-00123
+6. Footer: 다크#212529, ©2024한강부동산
+빌드: npm run build 성공 확인

@@ -1,0 +1,21 @@
+# NexusPoint — 크몽 입점용 웹사이트 제작/개발 포트폴리오
+> 상담과 결제는 크몽에서만 진행합니다. (외부 연락처/외부 결제 유도 없음)
+
+## What we do
+- 전환(문의/상담) 중심의 웹사이트 제작
+- 소개/랜딩페이지 제작
+- 예약/문의 흐름 설계, 운영 구조 제안
+
+## Primary links
+- Main: https://nexuspoint-a.vercel.app/
+- Portfolio: https://nexuspoint-a.vercel.app/#portfolio
+- Pricing / Packages: https://nexuspoint-a.vercel.app/#pricing
+- Process: https://nexuspoint-a.vercel.app/#process
+- FAQ: https://nexuspoint-a.vercel.app/#faq
+
+## Contact (Kmong only)
+- Kmong: https://kmong.com/
+
+## Policies
+- 개인정보 수집 폼을 운영하지 않습니다. 상담/결제는 크몽 내 기능만 사용합니다.
+- 오픈 후 버그 수정/유지보수 범위는 패키지/FAQ 기준으로 안내합니다.

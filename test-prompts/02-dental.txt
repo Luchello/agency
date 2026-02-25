@@ -1,0 +1,15 @@
+치과 '미소치과' 랜딩페이지. App.jsx 하나에 전부 구현.
+
+index.html: title '미소치과 | 분당 임플란트·교정 전문', meta desc, OG태그, Pretendard 폰트(<link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css'>), body font-family:Pretendard,sans-serif, html scroll-behavior:smooth
+
+컬러: 배경 #F0F9FF(연하늘), 텍스트 #1E3A5F, 액센트 #2B7DE9(블루), 카드 white
+
+섹션:
+1. Navbar: 고정, 🦷 미소치과, 링크(진료안내|의료진|오시는길)
+2. Hero: min-h-screen, 블루그라디언트, '건강한 미소, 행복한 하루', 서브:'분당서현역 2분|20년 전문 진료', CTA '진료 예약' → tel:031-712-2828
+3. Services(id=services): 'Our Services', 4열(모바일2열): 🦷임플란트 상담후결정/😁치아교정 성인교정·투명교정/✨심미보철 라미네이트·올세라믹/🔬일반진료 충치·스케일링·신경치료. 카드 rounded-xl shadow-sm hover:shadow-md
+4. Team(id=team): 배경sky-50, 2열: 👨‍⚕️박진수 원장 서울대치대 20년/'최소침습 임플란트 전문' | 👩‍⚕️김하은 부원장 연세대치대 12년/'성인교정·투명교정 전문'
+5. Info(id=info): 📍경기 성남시 분당구 서현로 210(서현역2번출구), 🕐평일09:30-18:30/토09:30-14:00/일휴진, 📞031-712-2828(tel:링크)
+6. Footer: 다크#1E3A5F, ©2024미소치과, 맨위로
+
+빌드: npm run build 성공 확인

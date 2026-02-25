@@ -1,0 +1,11 @@
+법률사무소 '정의법률사무소' 랜딩페이지. App.jsx 하나에 전부 구현.
+index.html: title '정의법률사무소 | 서초 민사·형사·이혼 전문', meta desc, OG태그, Pretendard 폰트(<link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css'>), body font-family:Pretendard,sans-serif, html scroll-behavior:smooth
+컬러: 배경 #FAFBFC, 텍스트 #1A1A2E, 액센트 #16213E(네이비), 카드 white
+섹션:
+1. Navbar: 고정, ⚖️ 정의법률사무소, 링크(업무분야|변호사|오시는길)
+2. Hero: min-h-screen, 네이비그라디언트(slate-800→slate-900), 흰텍스트 '당신의 권리, 저희가 지키겠습니다', CTA '무료상담 신청' → tel:02-535-1004
+3. Practice(id=practice): 4열(모바일2열): ⚖️민사소송/🔒형사변호/💔이혼·가사/🏢기업법무. 카드 rounded-xl shadow-sm
+4. Lawyers(id=lawyers): 2열: 👨‍⚖️정의준 대표변호사 서울대법대 변호사경력15년 '의뢰인의 목소리에 귀 기울입니다' / 👩‍⚖️김서연 변호사 고려대법대 8년 '가사·이혼 분야 전문'
+5. Info(id=info): 📍서울서초구법원로4길 18, 🕐평일09-18, 📞02-535-1004(tel:), 초회상담무료
+6. Footer: 다크#1A1A2E, ©2024
+빌드: npm run build 성공 확인

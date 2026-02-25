@@ -1,0 +1,27 @@
+# Dependencies
+**/node_modules/
+
+# Build outputs
+**/dist/
+**/.next/
+**/build/
+
+# Runtime artifacts
+**/screenshots/
+**/*.log
+**/.DS_Store
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+
+# Local caches
+**/.cache/
+**/.turbo/
+**/.vercel/
+**/.claude/
+
+# OS / editor
+.vscode/
+.idea/

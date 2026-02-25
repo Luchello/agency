@@ -1,0 +1,10 @@
+꽃집 '봄날의꽃' 랜딩페이지. App.jsx 하나에 전부 구현.
+index.html: title '봄날의 꽃 | 강남 플라워샵', meta desc, OG태그, Pretendard 폰트(<link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css'>), body font-family:Pretendard,sans-serif, html scroll-behavior:smooth
+컬러: 배경 #FFF5F5(연핑크), 텍스트 #4A2040, 액센트 #E84393(핑크), 카드 white
+섹션:
+1. Navbar: 고정, 🌸 봄날의 꽃, 링크(상품|주문안내|오시는길)
+2. Hero: min-h-screen, 핑크그라디언트(rose-50→pink-100), '특별한 날, 특별한 꽃', 서브:'강남역 3분|당일배송', CTA '주문하기' → tel:02-545-0202
+3. Products(id=products): 'Flower Shop', 4열(모바일2열): 💐꽃다발 30,000~/'계절꽃으로 감각있게'/🌹꽃바구니 50,000~/'선물하기 좋은'/🎀개업화환 80,000~/'새 출발을 축하'/🌺웨딩부케 100,000~/'인생에서 가장 아름다운'. 카드 rounded-xl shadow-sm
+4. Info(id=info): 📍서울강남구강남대로 328, 🕐매일10-21/명절휴무, 📞02-545-0202(tel:), 🚚강남·서초 당일배송
+5. Footer: 다크#4A2040, 인스타@spring_flower_shop, ©2024
+빌드: npm run build 성공 확인

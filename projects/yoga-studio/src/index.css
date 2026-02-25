@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300..800&family=Playfair+Display:wght@400..900&display=swap');
+@import "tailwindcss";
+
+:root {
+  --lavender: #c4b5fd;
+  --cream: #faf7f5;
+  --ink: #1f1a24;
+  --bg: #ffffff;
+
+  color: var(--ink);
+  background: var(--bg);
+  text-rendering: geometricPrecision;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+html {
+  font-size: 16px; /* iOS zoom prevention */
+}
+
+body {
+  margin: 0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  letter-spacing: -0.01em;
+  overflow-x: hidden;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--lavender) 35%, white);
+}
+
+/* Reveal animation (keeps the existing hook) */
+@keyframes softIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  filter: blur(6px);
+}
+
+.reveal.is-in {
+  animation: softIn 900ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes floaty {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(-1deg);
+  }
+  50% {
+    transform: translate3d(0, -10px, 0) rotate(1deg);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) rotate(-1deg);
+  }
+}
+
+/* Organic blob via clip-path (used very sparingly) */
+.blob {
+  clip-path: path(
+    "M 61 7 C 75 13 89 28 92 44 C 95 60 87 77 74 86 C 61 95 44 96 30 88 C 16 80 5 64 7 48 C 9 32 19 16 34 9 C 49 2 47 1 61 7 Z"
+  );
+}

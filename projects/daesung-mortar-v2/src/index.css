@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+@theme {
+  --color-charcoal: #33302d;
+  --color-amber: #c4913e;
+  --color-offwhite: #f5f3f0;
+  --color-subtle: #ebe7e2;
+  --color-ink: #1a1a1a;
+
+  --font-sans: "Pretendard Variable", Pretendard, ui-sans-serif, system-ui,
+    -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+    "Apple Color Emoji", "Segoe UI Emoji";
+  --font-numeric: Inter, var(--font-sans);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-size: 16px; /* iOS zoom prevention */
+  }
+
+  body {
+    @apply bg-offwhite text-ink antialiased;
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  img,
+  video {
+    max-width: 100%;
+    height: auto;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--color-amber) 35%, white);
+  }
+
+  a {
+    @apply underline underline-offset-4 decoration-transparent hover:decoration-amber;
+  }
+}
+
+/* Subtle concrete-ish texture (CSS-only) */
+.texture {
+  background-image: radial-gradient(
+      1200px 600px at 10% 0%,
+      rgba(0, 0, 0, 0.04),
+      transparent 55%
+    ),
+    radial-gradient(
+      800px 500px at 90% 20%,
+      rgba(0, 0, 0, 0.03),
+      transparent 60%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.4),
+      rgba(255, 255, 255, 0.4)
+    );
+}
+
+/* Reveal visible by default for full-page capture stability */
+.reveal {
+  opacity: 1;
+  transform: none;
+  transition: opacity 360ms ease, transform 360ms ease, filter 360ms ease;
+}
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Tiny utility for numeric emphasis */
+.numeric {
+  font-family: var(--font-numeric);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Lightbox backdrop scroll lock */
+body[data-lock-scroll="true"] {
+  overflow: hidden;
+}

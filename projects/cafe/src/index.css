@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+:root{
+  --ondo-bg: #FAF8F5;
+  --ondo-surface: #FFFFFF;
+  --ondo-text: #2C2420;
+  --ondo-text2: #8B7D6B;
+  --ondo-accent: #C5956B;
+  --ondo-border: #E8E2DA;
+  --ondo-dark: #2C2420;
+
+  --ondo-radius-lg: 24px;
+  --ondo-radius-md: 18px;
+  --ondo-shadow: 0 22px 60px rgba(44,36,32,.10);
+}
+
+html, body { height: 100%; }
+html { font-size: 16px; }
+
+body {
+  margin: 0;
+  background: var(--ondo-bg);
+  color: var(--ondo-text);
+  overflow-x: hidden;
+  padding-bottom: env(safe-area-inset-bottom);
+  font-family: "Noto Sans KR", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+}
+
+::selection{
+  background: color-mix(in oklab, var(--ondo-accent), white 35%);
+  color: var(--ondo-text);
+}
+
+img, video { max-width: 100%; height: auto; }
+
+/* Subtle grain for warm minimalism */
+.ondo-grain{ position: relative; }
+.ondo-grain::after{
+  content: "";
+  pointer-events:none;
+  position:absolute;
+  inset:0;
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(197,149,107,0.10), transparent 55%),
+    radial-gradient(circle at 85% 70%, rgba(44,36,32,0.08), transparent 50%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.24'/%3E%3C/svg%3E");
+  mix-blend-mode:multiply;
+  opacity:.35;
+}
+
+/* Scroll reveal (hook-driven) */
+.ondo-reveal{ opacity:0; transform: translateY(14px); transition: opacity 700ms cubic-bezier(.2,.8,.2,1), transform 700ms cubic-bezier(.2,.8,.2,1); }
+.ondo-reveal.is-in{ opacity:1; transform: translateY(0); }
+
+.font-serifDisplay{ font-family: "Playfair Display", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif; }
+.font-label{ font-family: "DM Sans", ui-sans-serif, system-ui; letter-spacing: .12em; text-transform: uppercase; }
+
+/* Smooth horizontal scroll */
+.ondo-snap-x{ scroll-snap-type: x mandatory; }
+.ondo-snap-item{ scroll-snap-align: start; }
+
+/* Hide scrollbar (still scrollable) */
+.ondo-no-scrollbar{ scrollbar-width: none; }
+.ondo-no-scrollbar::-webkit-scrollbar{ display:none; }

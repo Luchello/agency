@@ -1,0 +1,11 @@
+사진관 '모먼트스튜디오' 랜딩페이지. App.jsx 하나에 전부 구현.
+index.html: title '모먼트 스튜디오 | 성수 프로필·웨딩촬영', meta desc, OG태그, Pretendard 폰트(<link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css'>), body font-family:Pretendard,sans-serif, html scroll-behavior:smooth
+컬러: 배경 #F5F5F5, 텍스트 #1A1A1A, 액센트 #E67E22(오렌지), 카드 white
+섹션:
+1. Navbar: 고정, 📷 모먼트 스튜디오, 링크(촬영안내|포트폴리오|오시는길)
+2. Hero: min-h-screen, 다크그라디언트, '순간을 영원으로', 서브:'성수동|프로필·커플·웨딩', CTA '촬영 문의' → tel:02-499-3344
+3. Services(id=services): 4열(모바일2열): 📸프로필촬영 150,000~/커플촬영 200,000~/💍웨딩촬영 500,000~/👨‍👩‍👧가족촬영 250,000~. 카드 rounded-xl shadow-sm
+4. Portfolio(id=portfolio): '포트폴리오' 그리드, 이모지카드6개 대체
+5. Info(id=info): 📍서울성동구연무장5길 9-16 3F, 🕐매일10-19(예약제)/월휴무, 📞02-499-3344(tel:)
+6. Footer: 다크#1A1A1A, 인스타@moment_studio_ss, ©2024
+빌드: npm run build 성공 확인
