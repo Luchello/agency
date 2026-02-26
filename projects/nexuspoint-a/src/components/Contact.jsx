@@ -19,6 +19,12 @@ export default function Contact() {
             상담과 결제는 모두 크몽 내 메시지/결제 기능으로만 진행됩니다.
           </p>
 
+          <div className="grid sm:grid-cols-3 gap-2 max-w-2xl mx-auto text-sm">
+            <div className="rounded-xl bg-cream/60 border border-cream-dark/30 px-3 py-2 text-charcoal-light">1) 문의 내용 전달</div>
+            <div className="rounded-xl bg-cream/60 border border-cream-dark/30 px-3 py-2 text-charcoal-light">2) 견적·일정 확정</div>
+            <div className="rounded-xl bg-cream/60 border border-cream-dark/30 px-3 py-2 text-charcoal-light">3) 제작 시작</div>
+          </div>
+
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
               href={KMONG_URL}

@@ -30,6 +30,11 @@ export default function Hero() {
             실제 제작 사례 확인하기
           </a>
         </div>
+        <div className="mt-7 flex flex-wrap items-center justify-center gap-2.5 text-sm">
+          <span className="px-3 py-1 rounded-full bg-white/80 border border-cream-dark/40 text-charcoal-light">평균 제작 3~7일</span>
+          <span className="px-3 py-1 rounded-full bg-white/80 border border-cream-dark/40 text-charcoal-light">크몽 안전결제 진행</span>
+          <span className="px-3 py-1 rounded-full bg-white/80 border border-cream-dark/40 text-charcoal-light">실제 포트폴리오 5건+</span>
+        </div>
       </div>
     </section>
   )

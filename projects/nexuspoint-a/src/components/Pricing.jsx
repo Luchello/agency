@@ -44,7 +44,12 @@ export default function Pricing() {
                   : 'bg-white border border-cream-dark/50 hover:shadow-lg'
               }`}
             >
-              <h3 className={`font-serif text-2xl font-bold mb-1 ${plan.accent ? 'text-white' : 'text-charcoal'}`}>{plan.name}</h3>
+              <div className="flex items-center gap-2 mb-1">
+                <h3 className={`font-serif text-2xl font-bold ${plan.accent ? 'text-white' : 'text-charcoal'}`}>{plan.name}</h3>
+                {plan.accent && (
+                  <span className="text-xs px-2 py-0.5 rounded-full bg-white/20 text-white border border-white/30">가장 많이 선택</span>
+                )}
+              </div>
               <p className={`text-sm mb-5 ${plan.accent ? 'text-white/80' : 'text-charcoal-light'}`}>{plan.desc}</p>
               <div className="mb-6">
                 <span className={`text-4xl font-bold ${plan.accent ? 'text-white' : 'text-charcoal'}`}>{plan.price}</span>
