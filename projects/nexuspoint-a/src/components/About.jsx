@@ -7,7 +7,7 @@ export default function About() {
       <div ref={ref} className={`max-w-4xl mx-auto transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         <div className="text-center mb-14">
           <p className="text-coral font-medium text-sm tracking-widest uppercase mb-3">About</p>
-          <h2 className="font-serif text-3xl md:text-4xl font-bold text-charcoal">왜 NexusPoint인가요?</h2>
+          <h2 className="font-serif text-3xl md:text-4xl font-bold text-charcoal">왜 연결지점은 NexusPoint일까요?</h2>
         </div>
         <div className="grid md:grid-cols-3 gap-8">
           {[

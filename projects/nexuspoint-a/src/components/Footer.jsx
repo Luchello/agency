@@ -16,6 +16,7 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
         <div>
           <div className="font-serif text-xl text-white mb-2">Nexus<span className="text-coral">Point</span></div>
+          <p className="text-sm mb-2">사장님과 고객님들의 연결지점, Nexus Point.</p>
           <p className="text-sm">상담 및 결제는 크몽을 통해서만 진행합니다.</p>
         </div>
 
