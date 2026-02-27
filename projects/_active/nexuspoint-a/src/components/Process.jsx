@@ -1,44 +1,108 @@
-import { MessageCircle, ClipboardList, Zap, Rocket } from 'lucide-react'
-import useScrollAnimation from '../hooks/useScrollAnimation'
+import { MessageCircle, FileText, Shield, Zap, CheckSquare, Rocket, LifeBuoy } from 'lucide-react'
+import { PROCESS_STEPS } from '../constants'
+import useReveal from '../hooks/useReveal'
 
-const processSteps = [
-  { step: '01', title: '상담', desc: '원하시는 방향과 레퍼런스를 함께 이야기해요', icon: MessageCircle },
-  { step: '02', title: '기획', desc: '구조와 디자인 방향을 잡고, 콘텐츠를 정리해요', icon: ClipboardList },
-  { step: '03', title: '제작', desc: 'AI 기술로 빠르고 정교하게 만들어요', icon: Zap },
-  { step: '04', title: '납품', desc: '도메인 연결, 배포, 운영 가이드까지 전달해요', icon: Rocket },
-]
+const ICON_MAP = { MessageCircle, FileText, Shield, Zap, CheckSquare, Rocket, LifeBuoy }
 
 export default function Process() {
-  const { ref, isVisible } = useScrollAnimation()
+  const { ref, isVisible } = useReveal()
+
   return (
-    <section id="process" className="relative py-20 md:py-28 px-6 overflow-hidden">
-      <div className="absolute inset-0 z-0">
-        <img src="/images/process-bg.webp" alt="" className="w-full h-full object-cover opacity-20" />
-      </div>
-      <div className="absolute inset-0 bg-warm-white/80 z-0" />
-      <div ref={ref} className={`relative z-10 max-w-4xl mx-auto transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-        <div className="text-center mb-14">
-          <p className="text-coral font-medium text-sm tracking-widest uppercase mb-3">Process</p>
-          <h2 className="font-serif text-3xl md:text-4xl font-bold text-charcoal">이렇게 진행돼요</h2>
+    <section id="process" className="py-24 px-6 bg-warm-white relative overflow-hidden">
+      {/* 배경 이미지 + 오버레이 */}
+      <div
+        className="absolute inset-0 bg-cover bg-center opacity-[0.04]"
+        style={{ backgroundImage: 'url(/images/process-bg.webp)' }}
+        aria-hidden="true"
+      />
+
+      <div className="relative max-w-6xl mx-auto">
+
+        <div
+          ref={ref}
+          className={`text-center mb-16 ${isVisible ? 'reveal-visible' : 'reveal-hidden'}`}
+        >
+          <p className="font-label text-xs tracking-[0.25em] uppercase text-coral mb-3">
+            Process
+          </p>
+          <h2 className="font-serif text-3xl md:text-4xl font-bold text-charcoal">
+            이렇게 진행됩니다
+          </h2>
+          <p className="mt-4 text-charcoal-light leading-relaxed max-w-xl mx-auto">
+            접수부터 납품, 후속 관리까지 7단계 체계적 프로세스로 진행합니다.
+          </p>
         </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {processSteps.map((s, i) => {
-            const Icon = s.icon
+
+        {/* 데스크탑: 가로 타임라인 */}
+        <div className="hidden lg:grid lg:grid-cols-7 gap-2">
+          {PROCESS_STEPS.map((step, i) => {
+            const Icon = ICON_MAP[step.icon] || Zap
             return (
-              <div key={s.step} className="relative bg-cream/50 rounded-2xl p-6 text-center border border-cream-dark/30">
-                <div className="w-12 h-12 rounded-full bg-coral/10 flex items-center justify-center mx-auto mb-3">
-                  <Icon className="w-6 h-6 text-coral" />
-                </div>
-                <span className="text-coral font-serif text-sm font-bold">Step {s.step}</span>
-                <h3 className="font-serif text-xl font-bold text-charcoal mt-1 mb-2">{s.title}</h3>
-                <p className="text-charcoal-light text-sm leading-relaxed">{s.desc}</p>
-                {i < processSteps.length - 1 && (
-                  <div className="hidden lg:block absolute top-1/2 -right-3 text-coral/40 text-xl">→</div>
+              <div
+                key={step.step}
+                className={`relative flex flex-col items-center text-center
+                  ${isVisible ? 'reveal-visible' : 'reveal-hidden'}`}
+                style={{ transitionDelay: `${i * 80 + 150}ms` }}
+              >
+                {/* 연결선 */}
+                {i < PROCESS_STEPS.length - 1 && (
+                  <div className="absolute top-6 left-[calc(50%+20px)] right-[-50%]
+                    h-px bg-cream-dark/60 z-0" aria-hidden="true" />
                 )}
+
+                {/* 아이콘 원형 */}
+                <div className="relative z-10 w-12 h-12 rounded-full bg-cream border-2 border-cream-dark/40
+                  flex items-center justify-center mb-3 shadow-sm">
+                  <Icon className="w-5 h-5 text-coral" />
+                </div>
+
+                {/* 단계 번호 */}
+                <span className="font-label text-xs text-coral font-semibold tracking-wider mb-1">
+                  {step.step}
+                </span>
+                <h3 className="font-semibold text-charcoal text-sm mb-1">{step.title}</h3>
+                <p className="text-xs text-charcoal-light leading-relaxed">{step.desc}</p>
               </div>
             )
           })}
         </div>
+
+        {/* 모바일/태블릿: 세로 타임라인 */}
+        <div className="lg:hidden space-y-0">
+          {PROCESS_STEPS.map((step, i) => {
+            const Icon = ICON_MAP[step.icon] || Zap
+            return (
+              <div
+                key={step.step}
+                className={`relative flex gap-5 pb-8 last:pb-0
+                  ${isVisible ? 'reveal-visible' : 'reveal-hidden'}`}
+                style={{ transitionDelay: `${i * 60 + 150}ms` }}
+              >
+                {/* 세로 연결선 */}
+                {i < PROCESS_STEPS.length - 1 && (
+                  <div className="absolute left-5 top-12 bottom-0 w-px bg-cream-dark/50"
+                    aria-hidden="true" />
+                )}
+
+                {/* 아이콘 */}
+                <div className="flex-shrink-0 w-11 h-11 rounded-full bg-cream border-2 border-cream-dark/40
+                  flex items-center justify-center shadow-sm z-10">
+                  <Icon className="w-5 h-5 text-coral" />
+                </div>
+
+                {/* 텍스트 */}
+                <div className="pt-1.5">
+                  <span className="font-label text-xs text-coral font-semibold tracking-wider">
+                    {step.step}
+                  </span>
+                  <h3 className="font-semibold text-charcoal mt-0.5">{step.title}</h3>
+                  <p className="text-sm text-charcoal-light mt-1 leading-relaxed">{step.desc}</p>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+
       </div>
     </section>
   )

@@ -1,18 +1,28 @@
 @import "tailwindcss";
 
 @theme {
+  /* === Colors === */
   --color-cream: #FDF6EC;
-  --color-cream-dark: #F5EBD9;
-  --color-coral: #E8836B;
-  --color-coral-light: #F2A895;
+  --color-cream-dark: #F0E6D4;
+  --color-coral: #E07B63;
+  --color-coral-light: #F0A090;
   --color-peach: #FDDCB5;
-  --color-charcoal: #2D2D2D;
-  --color-charcoal-light: #555555;
+  --color-charcoal: #1F1F1F;
+  --color-charcoal-light: #4A4A4A;
   --color-warm-white: #FFFAF5;
+  --color-dark-bg: #1A1A2E;
+  --color-dark-surface: #232340;
+  --color-dark-text: #E8E8F0;
+  --color-dark-muted: #9898B0;
+  --color-accent-green: #4CAF7D;
+
+  /* === Fonts === */
   --font-serif: 'Playfair Display', Georgia, serif;
-  --font-sans: 'Pretendard', -apple-system, sans-serif;
+  --font-sans: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-label: 'DM Sans', 'Inter', var(--font-sans);
 }
 
+/* === Base === */
 html { scroll-behavior: smooth; }
 
 body {
@@ -20,4 +30,61 @@ body {
   color: var(--color-charcoal);
   background: var(--color-warm-white);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* === Marquee Animation === */
+@keyframes marquee-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 28s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* === Film Grain Animation === */
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  10%       { transform: translate(-4%, -8%); }
+  30%       { transform: translate(3%, -12%); }
+  50%       { transform: translate(10%, 8%); }
+  70%       { transform: translate(8%, 3%); }
+  90%       { transform: translate(-1%, 6%); }
+}
+
+/* === Reveal (useReveal hook 전용) === */
+.reveal-hidden {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1),
+              transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* === Scrollbar Hide (가로 스크롤 영역) === */
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+/* === Accordion max-height 트랜지션 === */
+.accordion-content {
+  overflow: hidden;
+  transition: max-height 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* === 접근성: prefers-reduced-motion === */
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee { animation: none; }
+  .reveal-hidden   { opacity: 1; transform: none; transition: none; }
+  .accordion-content { transition: none; }
 }

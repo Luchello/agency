@@ -1,53 +1,101 @@
-import { Wheat, Heart, Coffee, Sparkles, Smile } from 'lucide-react'
-import useScrollAnimation from '../hooks/useScrollAnimation'
+import { ArrowUpRight } from 'lucide-react'
+import { PORTFOLIO_ITEMS } from '../constants'
+import useReveal from '../hooks/useReveal'
 
-const portfolioItems = [
-  { name: '블룸 베이커리', type: '베이커리', url: 'https://bloom-bakery.vercel.app', icon: Wheat, gradient: 'from-orange-100 to-amber-50', iconColor: 'text-orange-500', desc: '따뜻한 빵 향기가 느껴지는 감성 베이커리 사이트' },
-  { name: '세레니티 요가', type: '요가 스튜디오', url: 'https://yoga-studio-swart.vercel.app', icon: Heart, gradient: 'from-purple-100 to-lavender-50', iconColor: 'text-purple-500', desc: '마음의 평화를 전하는 요가 스튜디오' },
-  // removed: daesung-mortar-v2 (separate business site)
-  { name: '카페 온도', type: '카페', url: 'https://cafe-taupe-ten.vercel.app', icon: Coffee, gradient: 'from-amber-100 to-orange-50', iconColor: 'text-amber-700', desc: '적정 온도의 커피와 공간을 소개하는 카페' },
-  { name: '라뮤르 네일', type: '네일살롱', url: 'https://nail-salon-lake.vercel.app', icon: Sparkles, gradient: 'from-pink-100 to-rose-50', iconColor: 'text-pink-500', desc: '세련된 감각의 프리미엄 네일살롱' },
-  { name: '미소플러스 치과', type: '치과', url: 'https://dental-clinic-beta-drab.vercel.app', icon: Smile, gradient: 'from-cyan-100 to-mint-50', iconColor: 'text-cyan-600', desc: '건강한 미소를 만드는 치과 클리닉' },
-]
+function PortfolioCard({ item, delay = 0 }) {
+  const { ref, isVisible } = useReveal({ threshold: 0.1 })
+
+  return (
+    <div
+      ref={ref}
+      className={`group relative rounded-2xl overflow-hidden border border-cream-dark/30
+        hover:shadow-xl hover:-translate-y-1 transition-all duration-500
+        ${item.colSpan}
+        ${isVisible ? 'reveal-visible' : 'reveal-hidden'}`}
+      style={{ transitionDelay: `${delay}ms` }}
+    >
+      <a
+        href={item.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block"
+        aria-label={`${item.name} 사이트 보기 (새 창)`}
+      >
+        {/* 그라데이션 플레이스홀더 */}
+        <div className={`w-full bg-gradient-to-br ${item.gradient} aspect-[4/3] relative overflow-hidden`}>
+          <div
+            className="absolute -top-8 -right-8 w-40 h-40 rounded-full opacity-40 blur-2xl"
+            style={{ background: item.accentColor }}
+          />
+          <div
+            className="absolute bottom-4 left-6 w-24 h-24 rounded-full opacity-20 blur-xl"
+            style={{ background: item.accentColor }}
+          />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span
+              className="text-7xl font-serif font-bold opacity-[0.12] select-none"
+              style={{ color: item.accentColor }}
+            >
+              {item.name.slice(0, 1)}
+            </span>
+          </div>
+          {/* 호버 시 외부 링크 아이콘 */}
+          <div className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/80 backdrop-blur-sm
+            flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300
+            shadow-sm">
+            <ArrowUpRight className="w-4 h-4 text-charcoal" />
+          </div>
+        </div>
+
+        {/* 카드 텍스트 */}
+        <div className="p-5 bg-warm-white">
+          <div className="flex items-start justify-between gap-2">
+            <div>
+              <span className="inline-block text-xs font-label uppercase tracking-wider
+                text-coral bg-coral/8 px-2.5 py-1 rounded-full mb-2">
+                {item.type}
+              </span>
+              <h3 className="font-serif text-lg font-semibold text-charcoal">{item.name}</h3>
+              <p className="text-sm text-charcoal-light mt-1 leading-relaxed">{item.desc}</p>
+            </div>
+            <ArrowUpRight className="w-5 h-5 text-charcoal-light group-hover:text-coral
+              transition-colors flex-shrink-0 mt-1" />
+          </div>
+        </div>
+      </a>
+    </div>
+  )
+}
 
 export default function Portfolio() {
-  const { ref, isVisible } = useScrollAnimation()
+  const { ref, isVisible } = useReveal()
+
   return (
-    <section id="portfolio" className="py-20 md:py-28 px-6 bg-warm-white">
-      <div ref={ref} className={`max-w-6xl mx-auto transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-        <div className="text-center mb-14">
-          <p className="text-coral font-medium text-sm tracking-widest uppercase mb-3">Portfolio</p>
-          <h2 className="font-serif text-3xl md:text-4xl font-bold text-charcoal">이런 사이트를 만들었어요</h2>
+    <section id="portfolio" className="py-24 px-6 bg-warm-white">
+      <div className="max-w-6xl mx-auto">
+
+        <div
+          ref={ref}
+          className={`text-center mb-14 ${isVisible ? 'reveal-visible' : 'reveal-hidden'}`}
+        >
+          <p className="font-label text-xs tracking-[0.25em] uppercase text-coral mb-3">
+            Portfolio
+          </p>
+          <h2 className="font-serif text-3xl md:text-4xl font-bold text-charcoal">
+            직접 만든 사이트들
+          </h2>
+          <p className="mt-4 text-charcoal-light leading-relaxed max-w-xl mx-auto">
+            모두 실제 Vercel에 배포된 라이브 사이트입니다. 클릭해서 직접 확인해보세요.
+          </p>
         </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {portfolioItems.map((item) => {
-            const Icon = item.icon
-            return (
-              <a
-                key={item.name}
-                href={item.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group block bg-cream/50 rounded-2xl p-6 border border-cream-dark/30 hover:shadow-xl hover:shadow-coral/5 hover:-translate-y-1 transition-all duration-300"
-              >
-                <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${item.gradient} flex items-center justify-center mb-4`}>
-                  <Icon className={`w-7 h-7 ${item.iconColor}`} />
-                </div>
-                <div className="flex items-center gap-2 mb-2">
-                  <h3 className="font-serif text-xl font-semibold text-charcoal group-hover:text-coral transition-colors">{item.name}</h3>
-                  <span className="text-xs px-2 py-0.5 bg-coral/10 text-coral rounded-full">{item.type}</span>
-                </div>
-                <p className="text-charcoal-light text-sm leading-relaxed mb-4">{item.desc}</p>
-                <span className="text-coral text-sm font-medium flex items-center gap-1">
-                  사이트 보기
-                  <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </span>
-              </a>
-            )
-          })}
+
+        {/* 벤토 그리드 */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-5">
+          {PORTFOLIO_ITEMS.map((item, i) => (
+            <PortfolioCard key={item.name} item={item} delay={i * 80} />
+          ))}
         </div>
+
       </div>
     </section>
   )

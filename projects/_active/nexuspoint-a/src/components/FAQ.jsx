@@ -1,38 +1,66 @@
-import useScrollAnimation from '../hooks/useScrollAnimation'
-
-const items = [
-  {
-    q: '상담과 결제는 어디서 진행하나요?',
-    a: '모든 상담/결제는 크몽 내 기능으로만 진행합니다. 외부 연락처 공유나 외부 결제 요청은 하지 않습니다.',
-  },
-  {
-    q: '개인정보를 입력하는 폼이 있나요?',
-    a: '이번 포트폴리오 사이트는 개인정보 수집 폼을 운영하지 않습니다.',
-  },
-  {
-    q: '제작 기간과 수정 범위는?',
-    a: '패키지별 기본 기간과 수정 횟수가 다르며, 상세 범위는 크몽 상품 설명에서 안내합니다.',
-  },
-]
+import { useState } from 'react'
+import { ChevronDown } from 'lucide-react'
+import { FAQ_ITEMS } from '../constants'
+import useReveal from '../hooks/useReveal'
 
 export default function FAQ() {
-  const { ref, isVisible } = useScrollAnimation()
+  const [openIndex, setOpenIndex] = useState(null)
+  const { ref, isVisible } = useReveal()
+
+  const toggle = (i) => setOpenIndex(openIndex === i ? null : i)
 
   return (
-    <section id="faq" className="py-20 md:py-28 px-6 bg-cream/40">
-      <div ref={ref} className={`max-w-4xl mx-auto transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-        <div className="text-center mb-12">
-          <p className="text-coral font-medium text-sm tracking-widest uppercase mb-3">FAQ</p>
-          <h2 className="font-serif text-3xl md:text-4xl font-bold text-charcoal">자주 묻는 질문</h2>
+    <section id="faq" className="py-24 px-6 bg-cream/40">
+      <div className="max-w-3xl mx-auto">
+
+        <div
+          ref={ref}
+          className={`text-center mb-12 ${isVisible ? 'reveal-visible' : 'reveal-hidden'}`}
+        >
+          <p className="font-label text-xs tracking-[0.25em] uppercase text-coral mb-3">
+            FAQ
+          </p>
+          <h2 className="font-serif text-3xl md:text-4xl font-bold text-charcoal">
+            자주 묻는 질문
+          </h2>
         </div>
-        <div className="space-y-4">
-          {items.map((item) => (
-            <article key={item.q} className="bg-white border border-cream-dark/40 rounded-2xl p-6">
-              <h3 className="font-semibold text-charcoal mb-2">{item.q}</h3>
-              <p className="text-charcoal-light text-sm leading-relaxed">{item.a}</p>
-            </article>
+
+        <div
+          className={`rounded-2xl bg-warm-white border border-cream-dark/40 overflow-hidden divide-y divide-cream-dark/30
+            ${isVisible ? 'reveal-visible' : 'reveal-hidden'}`}
+          style={{ transitionDelay: '150ms' }}
+        >
+          {FAQ_ITEMS.map((item, i) => (
+            <div key={i}>
+              <button
+                onClick={() => toggle(i)}
+                aria-expanded={openIndex === i}
+                aria-controls={`faq-answer-${i}`}
+                id={`faq-question-${i}`}
+                className="w-full flex items-center justify-between px-6 py-5 text-left
+                  hover:bg-cream/30 transition-colors"
+              >
+                <span className="font-semibold text-charcoal pr-4">{item.q}</span>
+                <ChevronDown
+                  className={`w-5 h-5 text-coral flex-shrink-0 transition-transform duration-300
+                    ${openIndex === i ? 'rotate-180' : ''}`}
+                />
+              </button>
+
+              <div
+                id={`faq-answer-${i}`}
+                role="region"
+                aria-labelledby={`faq-question-${i}`}
+                className={`accordion-content ${openIndex === i ? 'max-h-48' : 'max-h-0'}`}
+              >
+                <p className="px-6 pb-5 text-sm text-charcoal-light leading-relaxed">
+                  {item.a}
+                </p>
+              </div>
+            </div>
           ))}
         </div>
+
       </div>
     </section>
   )

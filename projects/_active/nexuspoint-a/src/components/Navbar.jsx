@@ -1,44 +1,89 @@
-import { useState } from 'react'
-import { KMONG_URL } from '../constants'
-
-const links = [
-  ['포트폴리오', '#portfolio'],
-  ['서비스', '#pricing'],
-  ['정책 보증', '#policy'],
-  ['프로세스', '#process'],
-  ['소개', '#about'],
-  ['FAQ', '#faq'],
-  ['문의', '#contact'],
-]
+import { useState, useEffect } from 'react'
+import { Menu, X } from 'lucide-react'
+import { KMONG_URL, NAV_LINKS } from '../constants'
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const handler = () => setScrolled(window.scrollY > 50)
+    window.addEventListener('scroll', handler, { passive: true })
+    return () => window.removeEventListener('scroll', handler)
+  }, [])
+
   return (
-    <nav className="fixed top-0 w-full bg-warm-white/90 backdrop-blur-md z-50 border-b border-cream-dark/50">
-      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+    <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50 max-w-5xl w-[calc(100%-2rem)]">
+      <div
+        className={`rounded-full backdrop-blur-xl px-5 py-2.5 flex items-center justify-between transition-all duration-500 ${
+          scrolled
+            ? 'bg-warm-white/95 shadow-xl border border-cream-dark/50'
+            : 'bg-warm-white/60 border border-cream-dark/30'
+        }`}
+      >
+        {/* Logo */}
         <a href="#" className="font-serif text-xl font-bold text-charcoal tracking-tight">
           Nexus<span className="text-coral">Point</span>
         </a>
-        <div className="hidden md:flex gap-8">
-          {links.map(([label, href]) => (
-            <a key={href} href={href} className="text-sm text-charcoal-light hover:text-coral transition-colors">{label}</a>
+
+        {/* Desktop links */}
+        <div className="hidden md:flex gap-7">
+          {NAV_LINKS.map(([label, href]) => (
+            <a
+              key={href}
+              href={href}
+              className="text-sm font-medium text-charcoal-light hover:text-coral transition-colors"
+            >
+              {label}
+            </a>
           ))}
         </div>
-        <a href={KMONG_URL} target="_blank" rel="noopener noreferrer" className="hidden md:block px-5 py-2 bg-coral text-white rounded-full text-sm font-medium hover:bg-coral-light transition-colors">
-          크몽에서 상담하기
+
+        {/* Desktop CTA */}
+        <a
+          href={KMONG_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hidden md:block rounded-full bg-coral text-white text-sm px-5 py-2 hover:bg-coral-light transition-colors"
+        >
+          크몽 상담하기
         </a>
-        <button onClick={() => setOpen(!open)} className="md:hidden p-2" aria-label="메뉴">
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            {open ? <path strokeLinecap="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /> : <path strokeLinecap="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />}
-          </svg>
+
+        {/* Mobile hamburger */}
+        <button
+          onClick={() => setOpen(!open)}
+          className="md:hidden p-2"
+          aria-label={open ? '메뉴 닫기' : '메뉴 열기'}
+          aria-expanded={open}
+        >
+          {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
       </div>
+
+      {/* Mobile dropdown */}
       {open && (
-        <div className="md:hidden bg-warm-white border-t border-cream-dark/50 px-6 py-4 space-y-3">
-          {links.map(([label, href]) => (
-            <a key={href} href={href} onClick={() => setOpen(false)} className="block text-charcoal-light hover:text-coral">{label}</a>
-          ))}
-          <a href={KMONG_URL} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)} className="block mt-3 text-center px-5 py-2.5 bg-coral text-white rounded-full font-medium">크몽에서 상담하기</a>
+        <div className="absolute left-0 right-0 mt-2 rounded-2xl bg-warm-white/98 backdrop-blur-xl shadow-2xl border border-cream-dark/30 px-6 py-5 md:hidden">
+          <div className="space-y-3">
+            {NAV_LINKS.map(([label, href]) => (
+              <a
+                key={href}
+                href={href}
+                onClick={() => setOpen(false)}
+                className="block text-charcoal-light hover:text-coral transition-colors font-medium"
+              >
+                {label}
+              </a>
+            ))}
+          </div>
+          <a
+            href={KMONG_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setOpen(false)}
+            className="block mt-4 text-center rounded-full bg-coral text-white px-5 py-2.5 font-medium hover:bg-coral-light transition-colors"
+          >
+            크몽 상담하기
+          </a>
         </div>
       )}
     </nav>

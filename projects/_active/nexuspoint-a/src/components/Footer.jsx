@@ -1,46 +1,68 @@
-import { KMONG_URL } from '../constants'
+import { NAV_LINKS, KMONG_URL } from '../constants'
 
 export default function Footer() {
-  const links = [
-    ['포트폴리오', '#portfolio'],
-    ['서비스', '#pricing'],
-    ['정책 보증', '#policy'],
-    ['프로세스', '#process'],
-    ['소개', '#about'],
-    ['FAQ', '#faq'],
-    ['문의', '#contact'],
-  ]
-
   return (
-    <footer className="py-12 px-6 bg-charcoal text-white/70">
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+    <footer className="bg-charcoal text-warm-white py-16 px-6">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
+        {/* 1열: 브랜드 */}
         <div>
-          <div className="font-serif text-xl text-white mb-2">Nexus<span className="text-coral">Point</span></div>
-          <p className="text-sm mb-2">사장님과 고객님들의 연결지점, Nexus Point.</p>
-          <p className="text-sm">상담 및 결제는 크몽을 통해서만 진행합니다.</p>
+          <div className="font-serif text-xl text-warm-white">
+            Nexus<span className="text-coral font-bold">Point</span>
+          </div>
+          <p className="text-sm text-dark-muted mt-2 leading-relaxed">
+            AI 기술로 빠르고 합리적으로,
+            <br />
+            사람의 감각으로 섬세하게
+          </p>
+          <p className="text-xs text-dark-muted mt-6">
+            &copy; 2026 NexusPoint. All rights reserved.
+          </p>
         </div>
 
-        <div className="flex flex-col gap-2">
-          {links.map(([label, href]) => (
-            <a key={href} href={href} className="text-sm hover:text-coral transition-colors">{label}</a>
-          ))}
+        {/* 2열: 네비게이션 */}
+        <div>
+          <p className="text-xs font-label uppercase tracking-[0.2em] text-dark-muted mb-4">
+            NAVIGATION
+          </p>
+          <ul className="flex flex-col gap-2">
+            {NAV_LINKS.map(([label, href]) => (
+              <li key={href}>
+                <a
+                  href={href}
+                  className="text-sm text-dark-muted hover:text-warm-white transition-colors"
+                >
+                  {label}
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
 
-        <div className="space-y-3">
+        {/* 3열: CTA */}
+        <div>
+          <p className="text-xs font-label uppercase tracking-[0.2em] text-dark-muted mb-4">
+            상담 시작하기
+          </p>
+          <p className="text-sm text-dark-muted mb-4 leading-relaxed">
+            상담 및 결제는 크몽을 통해서만 진행합니다.
+          </p>
           <a
             href={KMONG_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center px-5 py-2.5 bg-coral text-white rounded-full text-sm font-medium hover:bg-coral-light transition-colors"
+            className="inline-block rounded-full bg-coral text-white text-sm px-5 py-2.5 hover:bg-coral-light transition-colors"
           >
             크몽에서 상담하기
           </a>
-          <p className="text-xs text-white/60">외부 연락처/외부 결제 유도 없음</p>
+          <p className="text-xs text-dark-muted mt-3">
+            외부 연락처 &middot; 외부 결제 &middot; 개인정보 수집 없음
+          </p>
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto mt-8 pt-6 border-t border-white/10 text-center text-sm">
-        © 2026 NexusPoint. All rights reserved.
+      {/* 하단 구분선 */}
+      <div className="max-w-6xl mx-auto border-t border-white/10 mt-12 pt-8 text-xs text-dark-muted text-center">
+        상담 및 결제는 크몽 플랫폼을 통해서만 진행합니다 &middot; 개인정보 수집 폼 없음 &middot; 크몽 정책 100% 준수
       </div>
     </footer>
   )

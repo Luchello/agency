@@ -1,51 +1,85 @@
-import { MessageSquare, ShieldCheck } from 'lucide-react'
-import useScrollAnimation from '../hooks/useScrollAnimation'
+import { ArrowRight, MessageSquare, FileCheck, Rocket } from 'lucide-react'
 import { KMONG_URL } from '../constants'
+import useReveal from '../hooks/useReveal'
+
+const STEPS = [
+  { icon: MessageSquare, label: '크몽 메시지 문의' },
+  { icon: FileCheck, label: '견적 & 일정 확정' },
+  { icon: Rocket, label: '제작 시작' },
+]
 
 export default function Contact() {
-  const { ref, isVisible } = useScrollAnimation()
+  const { ref, isVisible } = useReveal()
 
   return (
-    <section id="contact" className="py-20 md:py-28 px-6 bg-warm-white">
-      <div ref={ref} className={`max-w-4xl mx-auto transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-        <div className="text-center mb-10">
-          <p className="text-coral font-medium text-sm tracking-widest uppercase mb-3">Contact</p>
-          <h2 className="font-serif text-3xl md:text-4xl font-bold text-charcoal">상담은 크몽에서만 진행합니다</h2>
-        </div>
+    <section id="contact" className="py-24 px-6 bg-warm-white">
+      <div className="max-w-3xl mx-auto">
 
-        <div className="bg-white rounded-2xl border border-cream-dark/40 p-8 md:p-10 text-center space-y-5">
-          <p className="text-charcoal-light leading-relaxed">
-            정책 준수를 위해 외부 연락처, 외부 결제, 외부 미팅 링크는 제공하지 않습니다.
-            상담과 결제는 모두 크몽 내 메시지/결제 기능으로만 진행됩니다.
-          </p>
+        <div
+          ref={ref}
+          className={`rounded-3xl overflow-hidden
+            ${isVisible ? 'reveal-visible' : 'reveal-hidden'}`}
+          style={{
+            background: 'linear-gradient(135deg, var(--color-coral) 0%, #C85D47 100%)',
+          }}
+        >
+          <div className="px-8 py-14 md:px-14 text-center">
 
-          <div className="grid sm:grid-cols-3 gap-2 max-w-2xl mx-auto text-sm">
-            <div className="rounded-xl bg-cream/60 border border-cream-dark/30 px-3 py-2 text-charcoal-light">1) 문의 내용 전달</div>
-            <div className="rounded-xl bg-cream/60 border border-cream-dark/30 px-3 py-2 text-charcoal-light">2) 견적·일정 확정</div>
-            <div className="rounded-xl bg-cream/60 border border-cream-dark/30 px-3 py-2 text-charcoal-light">3) 제작 시작</div>
-          </div>
+            {/* 프로모션 배지 */}
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full
+              bg-white/20 border border-white/30 text-white/90 text-sm font-medium mb-6">
+              선착순 5건 · 30만원부터
+            </div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-white mb-4">
+              지금 바로 시작하세요
+            </h2>
+            <p className="text-white/80 leading-relaxed mb-10 max-w-md mx-auto">
+              상담과 결제는 크몽 플랫폼을 통해서만 진행합니다.
+              개인정보 수집 폼 없이 안전하게 거래할 수 있습니다.
+            </p>
+
+            {/* 3단계 프로세스 */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-10">
+              {STEPS.map((step, i) => {
+                const Icon = step.icon
+                return (
+                  <div key={i} className="flex items-center gap-3">
+                    <div className="flex items-center gap-2 px-4 py-2.5 rounded-full
+                      bg-white/15 border border-white/25">
+                      <Icon className="w-4 h-4 text-white/80" />
+                      <span className="text-sm text-white font-medium whitespace-nowrap">
+                        {step.label}
+                      </span>
+                    </div>
+                    {i < STEPS.length - 1 && (
+                      <ArrowRight className="w-4 h-4 text-white/50 hidden sm:block" />
+                    )}
+                  </div>
+                )
+              })}
+            </div>
+
+            {/* CTA 버튼 */}
             <a
               href={KMONG_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-7 py-3 bg-coral text-white rounded-full font-medium hover:bg-coral-light transition-colors inline-flex items-center gap-2"
+              className="inline-flex items-center gap-2.5 rounded-full
+                bg-white text-coral font-semibold px-8 py-4
+                hover:bg-cream hover:-translate-y-0.5 transition-all duration-300
+                shadow-xl shadow-black/20"
             >
-              <MessageSquare className="w-4 h-4" /> 크몽에서 상담하기
+              크몽에서 맞춤 상담 시작하기
+              <ArrowRight className="w-5 h-5" />
             </a>
-            <a
-              href={KMONG_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-7 py-3 border border-coral/40 text-coral rounded-full font-medium hover:bg-coral/5 transition-colors inline-flex items-center gap-2"
-            >
-              <ShieldCheck className="w-4 h-4" /> 크몽 메시지로 문의하기
-            </a>
-          </div>
 
-          <p className="text-sm text-charcoal-light">상담 및 결제는 크몽을 통해서만 진행합니다.</p>
+            <p className="text-white/55 text-xs mt-6">
+              외부 연락처 · 외부 결제 · 개인정보 수집 없음
+            </p>
+          </div>
         </div>
+
       </div>
     </section>
   )

@@ -1,85 +1,153 @@
-import useScrollAnimation from '../hooks/useScrollAnimation'
-import { KMONG_URL } from '../constants'
-
-const pricingPlans = [
-  {
-    name: 'Basic',
-    price: '30만원',
-    desc: '심플하게 시작하기',
-    features: ['원페이지 랜딩', '모바일 반응형', '기본 SEO', '1회 수정 포함', '3일 내 납품'],
-    accent: false,
-  },
-  {
-    name: 'Standard',
-    price: '60만원',
-    desc: '가장 인기 있는 선택',
-    features: ['다중 섹션 구성', '크몽 상담 동선 연결', 'SEO 최적화', '3회 수정 포함', '5일 내 납품', '구글 애널리틱스'],
-    accent: true,
-  },
-  {
-    name: 'Premium',
-    price: '100만원',
-    desc: '비즈니스의 얼굴',
-    features: ['풀 커스텀 디자인', '관리자 기능', '무제한 수정', '7일 내 납품', '유지보수 1개월', '성능 최적화'],
-    accent: false,
-  },
-]
+import { Check, Zap } from 'lucide-react'
+import { KMONG_URL, PRICING_PLANS, EXPRESS_ADDON, ADDON_PRICING } from '../constants'
+import useReveal from '../hooks/useReveal'
 
 export default function Pricing() {
-  const { ref, isVisible } = useScrollAnimation()
+  const { ref, isVisible } = useReveal()
+
   return (
-    <section id="pricing" className="py-20 md:py-28 px-6 bg-cream/40">
-      <div ref={ref} className={`max-w-5xl mx-auto transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-        <div className="text-center mb-14">
-          <p className="text-coral font-medium text-sm tracking-widest uppercase mb-3">Pricing</p>
-          <h2 className="font-serif text-3xl md:text-4xl font-bold text-charcoal">합리적인 가격, 확실한 퀄리티</h2>
+    <section id="pricing" className="py-24 px-6 bg-cream/40">
+      <div className="max-w-5xl mx-auto">
+
+        <div
+          ref={ref}
+          className={`text-center mb-14 ${isVisible ? 'reveal-visible' : 'reveal-hidden'}`}
+        >
+          <p className="font-label text-xs tracking-[0.25em] uppercase text-coral mb-3">
+            Services & Pricing
+          </p>
+          <h2 className="font-serif text-3xl md:text-4xl font-bold text-charcoal">
+            투명한 가격 체계
+          </h2>
+          <p className="mt-4 text-charcoal-light leading-relaxed max-w-xl mx-auto">
+            숨겨진 비용 없이 처음부터 명확하게. 모든 상담과 결제는 크몽을 통해 진행됩니다.
+          </p>
         </div>
-        <div className="grid md:grid-cols-3 gap-6">
-          {pricingPlans.map((plan) => (
+
+        {/* 3개 가격 카드 */}
+        <div className="grid md:grid-cols-3 gap-6 mb-10">
+          {PRICING_PLANS.map((plan, i) => (
             <div
               key={plan.name}
-              className={`rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 ${
-                plan.accent
-                  ? 'bg-coral text-white shadow-xl shadow-coral/20 ring-2 ring-coral'
-                  : 'bg-white border border-cream-dark/50 hover:shadow-lg'
-              }`}
+              className={`relative rounded-2xl p-7 flex flex-col
+                transition-all duration-300 hover:-translate-y-1 hover:shadow-xl
+                ${isVisible ? 'reveal-visible' : 'reveal-hidden'}
+                ${plan.highlight
+                  ? 'bg-coral text-white shadow-xl shadow-coral/25 ring-2 ring-coral'
+                  : 'bg-warm-white border border-cream-dark/40'
+                }`}
+              style={{ transitionDelay: `${i * 100 + 150}ms` }}
             >
-              <div className="flex items-center gap-2 mb-1">
-                <h3 className={`font-serif text-2xl font-bold ${plan.accent ? 'text-white' : 'text-charcoal'}`}>{plan.name}</h3>
-                {plan.accent && (
-                  <span className="text-xs px-2 py-0.5 rounded-full bg-white/20 text-white border border-white/30">가장 많이 선택</span>
-                )}
+              {plan.badge && (
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                  <span className="bg-charcoal text-warm-white text-xs font-label px-3 py-1 rounded-full whitespace-nowrap">
+                    {plan.badge}
+                  </span>
+                </div>
+              )}
+
+              <div className="mb-5">
+                <h3 className={`font-label text-sm uppercase tracking-widest mb-1
+                  ${plan.highlight ? 'text-white/70' : 'text-charcoal-light'}`}>
+                  {plan.name}
+                </h3>
+                <p className={`font-serif text-3xl font-bold
+                  ${plan.highlight ? 'text-white' : 'text-charcoal'}`}>
+                  {plan.price}
+                </p>
+                <p className={`text-sm mt-1
+                  ${plan.highlight ? 'text-white/75' : 'text-charcoal-light'}`}>
+                  {plan.duration}
+                </p>
+                <p className={`text-sm mt-2 font-medium
+                  ${plan.highlight ? 'text-white/90' : 'text-charcoal'}`}>
+                  {plan.desc}
+                </p>
               </div>
-              <p className={`text-sm mb-5 ${plan.accent ? 'text-white/80' : 'text-charcoal-light'}`}>{plan.desc}</p>
-              <div className="mb-6">
-                <span className={`text-4xl font-bold ${plan.accent ? 'text-white' : 'text-charcoal'}`}>{plan.price}</span>
-                <span className={`text-sm ml-1 ${plan.accent ? 'text-white/70' : 'text-charcoal-light'}`}>~</span>
-              </div>
-              <ul className="space-y-3 mb-8">
+
+              <ul className="space-y-2.5 flex-1 mb-7">
                 {plan.features.map((f) => (
-                  <li key={f} className="flex items-start gap-2 text-sm">
-                    <svg className={`w-4 h-4 mt-0.5 flex-shrink-0 ${plan.accent ? 'text-white' : 'text-coral'}`} fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                    <span className={plan.accent ? 'text-white/90' : 'text-charcoal-light'}>{f}</span>
+                  <li key={f} className="flex items-start gap-2.5">
+                    <Check className={`w-4 h-4 flex-shrink-0 mt-0.5
+                      ${plan.highlight ? 'text-white/80' : 'text-accent-green'}`} />
+                    <span className={`text-sm
+                      ${plan.highlight ? 'text-white/85' : 'text-charcoal-light'}`}>
+                      {f}
+                    </span>
                   </li>
                 ))}
               </ul>
+
               <a
                 href={KMONG_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`block text-center py-3 rounded-full font-medium transition-colors ${
-                  plan.accent
-                    ? 'bg-white text-coral hover:bg-cream'
-                    : 'bg-coral/10 text-coral hover:bg-coral hover:text-white'
-                }`}
+                className={`block text-center rounded-full py-3 text-sm font-semibold
+                  transition-all hover:-translate-y-0.5
+                  ${plan.highlight
+                    ? 'bg-white text-coral hover:bg-cream shadow-md'
+                    : 'bg-coral text-white hover:bg-coral-light shadow-sm shadow-coral/20'
+                  }`}
               >
                 크몽에서 상담하기
               </a>
             </div>
           ))}
         </div>
+
+        {/* Express 옵션 */}
+        <div
+          className={`rounded-2xl border border-coral/25 bg-coral/5 p-6
+            flex flex-col sm:flex-row items-center justify-between gap-4
+            ${isVisible ? 'reveal-visible' : 'reveal-hidden'}`}
+          style={{ transitionDelay: '450ms' }}
+        >
+          <div className="flex items-center gap-4">
+            <div className="w-10 h-10 rounded-full bg-coral/15 flex items-center justify-center flex-shrink-0">
+              <Zap className="w-5 h-5 text-coral" />
+            </div>
+            <div>
+              <p className="font-semibold text-charcoal">
+                {EXPRESS_ADDON.name} — {EXPRESS_ADDON.price}
+              </p>
+              <p className="text-sm text-charcoal-light mt-0.5">{EXPRESS_ADDON.desc}</p>
+            </div>
+          </div>
+          <a
+            href={KMONG_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-shrink-0 rounded-full bg-coral text-white text-sm px-5 py-2.5
+              font-medium hover:bg-coral-light transition-colors"
+          >
+            급행 문의하기
+          </a>
+        </div>
+
+        {/* 추가 기능 가격표 */}
+        <div
+          className={`mt-10 ${isVisible ? 'reveal-visible' : 'reveal-hidden'}`}
+          style={{ transitionDelay: '550ms' }}
+        >
+          <p className="text-center font-label text-xs uppercase tracking-[0.2em] text-charcoal-light mb-5">
+            Add-on Options
+          </p>
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
+            {ADDON_PRICING.map((addon) => (
+              <div
+                key={addon.name}
+                className="flex items-center justify-between px-4 py-3
+                  rounded-xl bg-warm-white border border-cream-dark/40"
+              >
+                <span className="text-sm text-charcoal">{addon.name}</span>
+                <span className="text-sm font-semibold text-coral ml-4 whitespace-nowrap">
+                  {addon.price}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+
       </div>
     </section>
   )
