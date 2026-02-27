@@ -143,3 +143,11 @@ grep -rn 'href=' src/ | grep -v node_modules
 # 5. 보고서 생성
 ```
 → 이 스크립트는 서버에 Chromium 설치 후 구현 가능
+
+---
+
+## 관련 문서
+
+- 파이프라인 전체 흐름: [PIPELINE.md](PIPELINE.md)
+- 기술 스택 (빌드 도구): [TECH-SPEC.md](TECH-SPEC.md)
+- 테스트 결과 실적: [PORTFOLIO.md](PORTFOLIO.md)

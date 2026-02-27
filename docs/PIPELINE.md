@@ -161,3 +161,12 @@ QA는 최소 2회전 실시:
 - 유지보수 계약 제안
 - 리뷰/후기 요청 (크몽/숨고 평점)
 - 추가 작업 제안 (SEO 개선, 신규 페이지 등)
+
+---
+
+## 관련 문서
+
+- 서비스 등급 및 가격: [SERVICES.md](SERVICES.md)
+- 기술 스택 상세: [TECH-SPEC.md](TECH-SPEC.md)
+- QA 체크리스트: [QA.md](QA.md)
+- 견적서 양식: [templates/estimate.md](templates/estimate.md)
